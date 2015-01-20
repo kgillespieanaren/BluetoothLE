@@ -13,11 +13,11 @@
 	</js-module>
 	<platform name="android">
 		<config-file target="res/xml/config.xml" parent="/*">
-			<feature name="BluetoothLePlugin">
-				<param name="android-package" value="com.randdusing.bluetoothle.BluetoothLePlugin" />
+			<feature name="BluetoothLe">
+				<param name="android-package" value="com.randdusing.bluetoothle.BluetoothLe" />
 			</feature>
 		</config-file>
-		<source-file src="src/android/BluetoothLePlugin.java" target-dir="src/com/randdusing/bluetoothle" />
+		<source-file src="src/android/BluetoothLe.java" target-dir="src/com/randdusing/bluetoothle" />
 		<config-file target="AndroidManifest.xml" parent="/manifest">
 			<uses-permission android:name="android.permission.BLUETOOTH"/>
 			<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
@@ -25,8 +25,8 @@
 	</platform>
 	<platform name="ios">
 		<config-file target="config.xml" parent="/*">
-			<feature name="BluetoothLePlugin">
-				<param name="ios-package" value="BluetoothLePlugin" />
+			<feature name="BluetoothLe">
+				<param name="ios-package" value="BluetoothLe" />
 			</feature>
 		</config-file>
 		<config-file target="*-Info.plist" parent="UIBackgroundModes">
@@ -34,26 +34,14 @@
 				<string>bluetooth-central</string>
 			</array>
 		</config-file>
-		<header-file src="src/ios/BluetoothLePlugin.h" />
-		<source-file src="src/ios/BluetoothLePlugin.m" />
+		<header-file src="src/ios/BluetoothLe.h" />
+		<source-file src="src/ios/BluetoothLe.m" />
 		<framework src="CoreBluetooth.framework" />
 	</platform>
-	<!--<platform name="wp8">
-		<config-file target="config.xml" parent="/*">
-			<feature name="BluetoothLePlugin">
-				<param name="wp-package" value="BluetoothLePlugin" />
-			</feature>
-		</config-file>
-		<config-file target="Properties/WMAppManifest.xml" parent="/Deployment/App/Capabilities">
-			<Capability Name="ID_CAP_NETWORKING" />
-			<Capability Name="ID_CAP_IDENTITY_DEVICE" />
-			<m2:DeviceCapability Name="bluetooth.genericAttributeProfile">
-				<m2:Device Id="any">
-					<m2:Function Type="serviceId:1803"/>
-				</m2:Device>
-			</m2:DeviceCapability>
-		</config-file>
-		<source-file src="src/wp/BluetoothLePlugin.cs" />
-	</platform>-->
+	<platform name="windows">
+    <js-module src="src/windows/BluetoothLeProxy.js" name="BluetoothLeProxy">
+            <merges target="" />
+        </js-module>
+	</platform>
 	<info>For more info: http://randdusing.com/</info>
 </plugin>

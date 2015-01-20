@@ -34,7 +34,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class BluetoothLePlugin extends CordovaPlugin 
+public class BluetoothLe extends CordovaPlugin 
 {
 	//Initialization related variables
   private final int REQUEST_BT_ENABLE = 59627; /*Random integer*/
@@ -424,7 +424,7 @@ public class BluetoothLePlugin extends CordovaPlugin
   	
   	JSONObject obj = getArgsObject(args);
   	
-  	if (getStatusReceiver(obj))
+  	if (obj == null || getStatusReceiver(obj))
   	{
 	    //Add a receiver to pick up when Bluetooth state changes
   		activity.registerReceiver(mReceiver, new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED));
