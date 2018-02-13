@@ -1120,7 +1120,7 @@ public class BluetoothLePlugin extends CordovaPlugin {
     UUID[] uuids = getServiceUuids(obj);
 
      if (obj != null && obj.optBoolean("clearCache", false)) {
-      refreshDeviceCache(bluetoothGatt);
+      refreshDeviceCache(null);
     }
     
     //Save the callback context for reporting back found connections. Also the isScanning flag
