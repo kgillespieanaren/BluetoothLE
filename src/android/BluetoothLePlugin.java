@@ -1699,12 +1699,12 @@ public class BluetoothLePlugin extends CordovaPlugin {
         if (localMethod != null) {
             boolean result = (Boolean) localMethod.invoke(localBluetoothGatt);
             if (result) {
-                Log.d(TAG, "Bluetooth refresh cache");
+                Log.d("BLE", "Bluetooth refresh cache");
             }
             return result;
         }
     } catch (Exception localException) {
-        Log.e(TAG, "An exception occurred while refreshing device");
+        Log.e("BLE", "An exception occurred while refreshing device");
     }
     return false;
   }
