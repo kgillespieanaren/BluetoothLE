@@ -38,6 +38,7 @@ import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanCallback;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -1118,6 +1119,10 @@ public class BluetoothLePlugin extends CordovaPlugin {
     }
     UUID[] uuids = getServiceUuids(obj);
 
+     if (obj != null && obj.optBoolean("clearCache", false)) {
+      refreshDeviceCache(bluetoothGatt);
+    }
+    
     //Save the callback context for reporting back found connections. Also the isScanning flag
     scanCallbackContext = callbackContext;
 
@@ -1689,15 +1694,17 @@ public class BluetoothLePlugin extends CordovaPlugin {
 
   private boolean refreshDeviceCache(BluetoothGatt gatt) {
     try {
-      BluetoothGatt localBluetoothGatt = gatt;
-      java.lang.reflect.Method localMethod = localBluetoothGatt.getClass().getMethod("refresh", new Class[0]);
-      if (localMethod != null) {
-        boolean bool = ((Boolean) localMethod.invoke(localBluetoothGatt, new Object[0])).booleanValue();
-        return bool;
-      }
-    } 
-    catch (Exception localException) {
-      Log.e("BLE", "An exception occured while refreshing device cache");
+        BluetoothGatt localBluetoothGatt = gatt;
+        Method localMethod = localBluetoothGatt.getClass().getMethod("refresh");
+        if (localMethod != null) {
+            boolean result = (Boolean) localMethod.invoke(localBluetoothGatt);
+            if (result) {
+                Log.d(TAG, "Bluetooth refresh cache");
+            }
+            return result;
+        }
+    } catch (Exception localException) {
+        Log.e(TAG, "An exception occurred while refreshing device");
     }
     return false;
   }
