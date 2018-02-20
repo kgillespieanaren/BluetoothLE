@@ -7,6 +7,7 @@ NSString *const keyRequest = @"request";
 NSString *const keyStatusReceiver = @"statusReceiver";
 NSString *const keyMessage = @"message";
 NSString *const keyName = @"name";
+NSString *const keyAdvertisingName = @"advertisingName";
 NSString *const keyAddress = @"address";
 NSString *const keyProperties = @"properties";
 NSString *const keyRssi = @"rssi";
@@ -2131,6 +2132,7 @@ NSString *const operationWrite = @"write";
 
   [self addDevice:peripheral :returnObj];
 
+  [returnObj setValue:[advertisementData objectForKey:CBAdvertisementDataLocalNameKey] forKey:keyAdvertisingName];
   [returnObj setValue:statusScanResult forKey:keyStatus];
   [returnObj setValue:RSSI forKey:keyRssi];
   [returnObj setValue:advertisement forKey:keyAdvertisement];
